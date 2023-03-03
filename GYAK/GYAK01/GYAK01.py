@@ -39,8 +39,15 @@ def is_odd(input_list):
 # %%
 def element_wise_sum(input_list_1, input_list_2):
     result = []
-    for i in range(0, len(input_list_1)):
+    index = min(len(input_list_1), len(input_list_2))
+    for i in range(0, index):
         result.append(input_list_1[i] + input_list_2[i])
+    
+    for i in range(index, len(input_list_1)):
+        result.append(input_list_1[i])
+
+    for i in range(index, len(input_list_2)):
+        result.append(input_list_2[i])
     
     return result
 

@@ -7,7 +7,7 @@
 
 # %%
 def subset(input_list, start_index, end_index):
-    return input_list[start_index:end_index + 1]
+    return input_list[start_index:end_index]
 
 # %%
 #Create a function that returns every nth element of a list.
@@ -39,14 +39,7 @@ def unique(input_list):
 
 # %%
 def flatten(input_list):
-    result = []
-    for l in input_list:
-        if isinstance(l, list):
-            result.extend(flatten(l))
-        else:
-            result.append(l)
-    
-    return result
+    return [num for sublist in input_list for num in sublist]
 
 # %%
 #Create a function that concatenates n lists
@@ -86,7 +79,7 @@ def reverse_tuples(input_list):
 #input parameters: input_list
 
 # %%
-def remove_duplicates(input_list):
+def remove_tuplicates(input_list):
     return list(set(input_list))
 
 # %%
@@ -120,22 +113,12 @@ def split_into_chunks(input_list, chunk_size):
     result = []
 
     for item in input_list:
-        chunks = divide_chunks(item, chunk_size)
+        chunks = []
+        for i in range(0, len(item), chunk_size):
+            result.append(item[i:i + chunk_size])
         result.extend(chunks)
     
     return result
-
-def divide_chunks(l, n):
-    result = []
-    for i in range(0, len(l), n):
-        result.append(l[i:i + n])
-
-    return result
-
-list = [[0, 3, 6, 9], [1, 4, 7, 10], [2, 5, 8, 11]]
-print(split_into_chunks(list, 3))
-
-    
 
 # %%
 #Create a function that can merge n dictionaries
