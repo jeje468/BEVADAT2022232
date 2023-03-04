@@ -1,8 +1,11 @@
 # %%
-#Create a function that decides if a list contains any odd numbers.
+#Készíts egy olyan függvényt ami paraméterként egy listát vár amiben egész számok vannak, 
+#és el kell döntenie,hogy van-e benne páratlan szám. A visszatérésí érték egy bool legyen (True:van benne,False:nincs benne)
+#Egy példa a bemenetre: [1,2,3,4,4,5]
+#Egy példa a kimenetre: True
 #return type: bool
-#function name must be: contains_odd
-#input parameters: input_list
+#függvény neve legyen: contains_odd
+
 
 # %%
 def contains_odd(input_list):
@@ -13,12 +16,13 @@ def contains_odd(input_list):
     return False
 
 # %%
-#Create a function that accepts a list of integers, and returns a list of bool.
-#The return list should be a "mask" and indicate whether the list element is odd or not.
-#(return should look like this: [True,False,False,.....])
+#Készíts egy függvényt ami paraméterként egy listát vár amiben egész számok vannak,
+#és eldönti minden eleméről, hogy páratlan-e. A kimenet egy lista legyen amiben True/False értékek vannak.
+#Egy példa a bemenetre: [1,2,3,4,5]
+#Egy példa a kimenetre: [True,False,True,False,True]
 #return type: list
-#function name must be: is_odd
-#input parameters: input_list
+#függvény neve legyen: is_odd
+
 
 # %%
 def is_odd(input_list):
@@ -29,12 +33,13 @@ def is_odd(input_list):
     return result
 
 # %%
-
-#Create a function that accpects 2 lists of integers and returns their element wise sum. <br>
-#(return should be a list)
+#Készíts egy függvényt ami paraméterként 2 db listát vár, és kiszámolja a listák elemenként vett összegét.
+#A függvény egy listával térjen vissza amiben a megfelelő indexen lévő lista_1 és lista_2 elemek összege van.
+#Egy példa a bemenetekre: input_list_1:[1,2,3,4], input_list_2:[1,2,3,4]
+#Egy példa a kimenetre: [2,3,4,8]
 #return type: list
-#function name must be: element_wise_sum
-#input parameters: input_list_1, input_list_2
+#függvény neve legyen: element_wise_sum
+
 
 # %%
 def element_wise_sum(input_list_1, input_list_2):
@@ -52,11 +57,13 @@ def element_wise_sum(input_list_1, input_list_2):
     return result
 
 # %%
-#Create a function that accepts a dictionary and returns its items as a list of tuples
-#(return should look like this: [(key,value),(key,value),....])
+#Készíts egy függvényt ami paraméterként egy dictionary-t vár és egy listával tér vissza
+#amiben a kulcs:érték párok egy Tuple-ben vannak.
+#Egy példa a bemenetere: {"egy":1,"ketto":2,"harom":3}
+#Egy példa a kimenetre: [("egy",1),("ketto",2),("harom",3)]
 #return type: list
-#function name must be: dict_to_list
-#input parameters: input_dict
+#függvény nevel egyen: dict_to_list
+
 
 # %%
 def dict_to_list(input_dict):
@@ -67,6 +74,8 @@ def dict_to_list(input_dict):
     return result
 
 # %%
-#If all the functions are created convert this notebook into a .py file and push to your repo
+#Ha végeztél a feladatokkal akkor ezt a jupytert alakítsd át egy .py file-ra 
+#ha vscode-ban dolgozol: https://stackoverflow.com/questions/64297272/best-way-to-convert-ipynb-to-py-in-vscode
+#ha jupyter lab-ban dolgozol: https://stackoverflow.com/questions/52885901/how-to-save-python-script-as-py-file-on-jupyter-notebook
 
 
