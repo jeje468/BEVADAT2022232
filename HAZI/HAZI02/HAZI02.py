@@ -39,7 +39,6 @@ def compare_two_array(array1: np.array, array2: np.array) -> np.array:
 # 3D-vel még műküdnie kell!, 
 
 # %%
-import numpy as np
 def get_array_shape(array: np.array) -> np.array:
     dimensions = array.shape
     sor = dimensions[0]
