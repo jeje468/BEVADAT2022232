@@ -2,15 +2,7 @@
 import numpy as np
 
 # %%
-#FONTOS!!!
-
-# CSAK OTT LEHET HASZNÁLNI FOR LOOP-OT AHOL A FELADAT KÜLÖN KÉRI!
-# [1,2,3,4] --> ezek az értékek np.array-ek. Ahol listát kérek paraméterként ott külön ki fogom emelni!
-# Ha végeztél a feladatokkal, akkor notebook-ot alakítsd át .py.
-# A FÁJLBAN CSAK A FÜGGVÉNYEK LEGYENEK! (KOMMENTEK MARADHATNAK)
-
-# %%
-# Írj egy olyan fügvényt, ami megfordítja egy 2d array oszlopait. Bemenetként egy array-t vár.
+# Írj egy olyan fügvényt, ami megfordítja egy 2d array oszlopait
 # Be: [[1,2],[3,4]]
 # Ki: [[2,1],[4,3]]
 # column_swap()
@@ -29,7 +21,7 @@ def column_swap(array: np.array) -> np.array:
 
 # %%
 def compare_two_array(array1: np.array, array2: np.array) -> np.array:
-    return np.where(np.equal(array1, array2))[0]
+    return np.equal(array1, array2).nonzero()[0]
 
 # %%
 # Készíts egy olyan függvényt, ami vissza adja string-ként a megadott array dimenzióit:
@@ -172,7 +164,7 @@ def get_act_date() -> np.datetime64:
 
 # %%
 def sec_from_1970() -> int:
-    current = np.datetime64('today', 'D')
+    current = np.datetime64('now')
     old = np.datetime64("1970-01-01T00:02:00")
     return int((current - old) / np.timedelta64(1, 's'))
 
