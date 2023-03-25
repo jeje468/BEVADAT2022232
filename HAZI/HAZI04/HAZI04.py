@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 # %%
 '''
@@ -109,7 +110,6 @@ függvény neve: add_age
 '''
 
 # %%
-import random
 def add_age(df: pd.DataFrame) -> pd.DataFrame:
     new_df = df.copy()
     numberOfRows = len(new_df.index)
@@ -157,20 +157,10 @@ függvény neve: add_grade
 # %%
 def add_grade(df: pd.DataFrame) -> pd.DataFrame:
     new_df = df.copy()
-    new_df['grade'] = df.apply(lambda row: (calculateGrade((row['math score'] + row['reading score'] + row['writing score']) / 300)), axis=1)
+    new_df["grade"] = pd.cut((new_df["math score"] + new_df["reading score"] + new_df["writing score"]) / 3, 
+                         bins=[0, 60, 70, 80, 90, 100], 
+                         labels=["F", "D", "C", "B", "A"])    
     return new_df
-
-def calculateGrade(percent):
-    if 0.9 < percent <= 1:
-        return "A"
-    elif 0.8 < percent <= 0.9:
-        return "B"
-    elif 0.7 < percent <= 0.8:
-        return "C"
-    elif 0.6 < percent <= 0.7:
-        return "D"
-    else:
-        return "F"
 
 # %%
 '''
