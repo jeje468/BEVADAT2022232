@@ -20,11 +20,6 @@ class KNNClassifier:
         dataset = np.genfromtxt(csv_path,delimiter=',')
         np.random.shuffle(dataset,)
         x,y = dataset[:,:4],dataset[:,-1]
-        x[np.isnan(x)] = 3.5
-        y = np.delete(y,np.where(x < 0.0)[0],axis=0)
-        y = np.delete(y,np.where(x > 13.0)[0],axis=0)
-        x = np.delete(x,np.where(x < 0.0)[0],axis=0)
-        x = np.delete(x,np.where(x > 13.0)[0],axis=0)
         return x,y
 
     def train_test_split(self, features:np.ndarray,
@@ -54,5 +49,4 @@ class KNNClassifier:
         return true_positive / len(self.y_test) * 100
     
     def confusion_matrix(self):
-        conf_matrix = confusion_matrix(self.y_test,self.y_preds)
-        sns.heatmap(conf_matrix,annot=True) 
+        return confusion_matrix(self.y_test,self.y_preds)
