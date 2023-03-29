@@ -8,7 +8,7 @@ class KNNClassifier:
 
     def __init__(self, k:int, test_split_ratio:float):
         self.k = k
-        self.test_split_ration = test_split_ratio
+        self.test_split_ratio = test_split_ratio
 
     @property
     def k_neighbours(self):
@@ -18,8 +18,8 @@ class KNNClassifier:
     def load_csv(csv_path:str) ->Tuple[np.ndarray,np.ndarray]:
         np.random.seed(42)
         dataset = np.genfromtxt(csv_path,delimiter=',')
-        np.random.shuffle(dataset,)
-        x,y = dataset[:,:4],dataset[:,-1]
+        np.random.shuffle(dataset)
+        x,y = dataset[:,:-1],dataset[:,-1]
         return x,y
 
     def train_test_split(self, features:np.ndarray,
@@ -38,15 +38,23 @@ class KNNClassifier:
     def predict(self, x_test:np.ndarray):
         labels_pred = []
         for x_test_element in x_test:
-            distances = self.euclidean(self.x_train,x_test_element)
+            distances = self.euclidean(x_test_element)
             distances = np.array(sorted(zip(distances, self.y_train)))
             label_pred = mode(distances[:self.k,1],keepdims=False).mode
             labels_pred.append(label_pred)
-        self.pred = np.array(labels_pred,dtype=np.int32)
+        self.y_preds = np.array(labels_pred,dtype=np.int32)
 
     def accuracy(self) -> float:
         true_positive = (self.y_test == self.y_preds).sum()
         return true_positive / len(self.y_test) * 100
     
-    def confusion_matrix(self):
+    def plot_confusion_matrix(self):
         return confusion_matrix(self.y_test,self.y_preds)
+
+# classifier = KNNClassifier(2, 0.2)
+# x,y = classifier.load_csv("E:\Bevadat\BEVADAT2022232\HAZI\HAZI05\diabetes.csv")
+# classifier.train_test_split(x, y)
+# euc = classifier.euclidean(x[0])
+# classifier.predict(classifier.x_test)
+# accuracy = classifier.accuracy()
+# matrix = classifier.plot_confusion_matrix()

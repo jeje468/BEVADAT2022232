@@ -1,0 +1,10 @@
+Az adatok beolvasását követően egy shuffle-t végeztem el az adatokon, majd egymástól elválasztottam a feature-öket, illetve a label-okat. A feature (x)
+a bemeneti paramétereket tartalmazták, a label (y) pedig, hogy ezek alapján milyen osztályba sorolható. Két részre bontottam a bemeneti adatokat 
+(tanítási, illetve teszt adatok). A shuffle-re azért van szükség, hogy, ha mondjuk a 80/20 arányba bontjuk szét a bemeneti adatokat előfordulhat, 
+hogy az utolsó 20%-ban mondjuk csak olyan adat található, amely egy adott osztályba sorolható. Így a folyamat végén a precizitás tesztelésénél csak 
+ennél az osztálynál teszteljük a precizitást. A predikció során a teszt adatokon soronként végig iteráltam, majd vettem a teszt adatoktól vett távolságát.
+A távolságot többféle módon lehet kiszámolni: Euklideszi, illetve Manhattan távolság. Ebben az esetben az euklideszi távolságot vizsgáltam, pitagorasz 
+tételhez hasonlóan. Az eredményeket sorba rendeztem és az első k elemből megvizsgáltam melyik osztály fordul elő leggyakrabban. Az accuracy függvényben 
+a true positive eredmények számát számolom ki. A teszt illetve a predikciós eredmények összehasonlításával végeztem, ehhez viszont korábban szükség volt
+a két pandas Series indexeinek visszaállítására. A bestAccuracy függvényben a k lehető értékein végigiteráltam, és megvizsgáltam a precizitás értékét. Jobb
+precizitás esetén a korábbi legjobb eredményt felülírtam.
