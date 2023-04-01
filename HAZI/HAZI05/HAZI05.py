@@ -13,7 +13,7 @@ class KNNClassifier:
         self.test_split_ratio = test_split_ratio
 
     @property
-    def k_neighbours(self):
+    def k_neighbors(self):
         return self.k
     
     @staticmethod
@@ -53,7 +53,7 @@ class KNNClassifier:
     def plot_confusion_matrix(self):
         return confusion_matrix(self.y_test, self.y_preds)
     
-    def bestAccuracy(self) -> Tuple[int, float]:
+    def best_k(self) -> Tuple[int, float]:
         accuracy = -math.inf
         idx = -1
         for i in range(1, 21):
