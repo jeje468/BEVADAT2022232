@@ -11,7 +11,7 @@ class KNNClassifier:
         self.test_split_ratio = test_split_ratio
 
     @property
-    def k_neighbours(self):
+    def k_neighbors(self):
         return self.k
     
     @staticmethod
@@ -22,9 +22,7 @@ class KNNClassifier:
         x,y = dataset[:,:-1],dataset[:,-1]
         return x,y
 
-    def train_test_split(self, features:np.ndarray,
-                     labels:np.ndarray):
-        
+    def train_test_split(self, features:np.ndarray, labels:np.ndarray):
         test_size = int(len(features) * self.test_split_ratio)
         train_size = len(features) - test_size
         assert len(features) == test_size + train_size, "Size mismatch!"
@@ -48,7 +46,7 @@ class KNNClassifier:
         true_positive = (self.y_test == self.y_preds).sum()
         return true_positive / len(self.y_test) * 100
     
-    def plot_confusion_matrix(self):
+    def confusion_matrix(self):
         return confusion_matrix(self.y_test,self.y_preds)
 
 # classifier = KNNClassifier(2, 0.2)
@@ -57,4 +55,4 @@ class KNNClassifier:
 # euc = classifier.euclidean(x[0])
 # classifier.predict(classifier.x_test)
 # accuracy = classifier.accuracy()
-# matrix = classifier.plot_confusion_matrix()
+# matrix = classifier.confusion_matrix()
