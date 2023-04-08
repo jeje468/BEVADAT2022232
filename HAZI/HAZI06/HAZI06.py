@@ -44,3 +44,37 @@ Ha ezt feladatot hiányzik, akkor nem fogadjuk el a házit!
 ##                                                              ##
 ##################################################################
 """
+
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+from src.DecisionTreeClassifier import DecisionTreeClassifier
+
+data = pd.read_csv('HAZI\\HAZI06\\data\\NJ.csv')
+X = data.iloc[:, :-1].values
+Y = data.iloc[:, -1].values.reshape(-1,1)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=41)
+
+opt_split = 0
+opt_depth = 0
+for i in range(1, 10):
+    for j in range(1, 10):
+        try:
+            classifier = DecisionTreeClassifier(min_samples_split=i, max_depth=j)
+            classifier.fit(X_train, Y_train)
+            Y_pred = classifier.predict(X_test)
+            accuracy = accuracy_score(Y_test, Y_pred)
+            print(f"Min split: {i}, max depth: {j}, accuracy:{accuracy}")
+            if accuracy >= 0.8:
+                opt_split = i
+                opt_depth = j
+                break
+        except Exception:
+            print(f"Error: min split:{i}, max depth: {j}")
+        
+
+print(opt_split)
+print(opt_depth)
+classifier = DecisionTreeClassifier(min_samples_split=opt_split, max_depth=opt_split)

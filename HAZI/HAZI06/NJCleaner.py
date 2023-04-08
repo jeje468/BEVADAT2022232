@@ -39,5 +39,30 @@ class NJCleaner():
         time_of_day = next(key for key, value in time_range_dict.items() if hour in value)
 
         return time_of_day
-
     
+    def convert_delay_minutes_to_bool(self, delay) -> int:
+        if 0 <= int(delay) and int(delay) < 5:
+            return 0
+        else:
+            return 1
+        
+    def convert_delay(self) -> pd.DataFrame:
+        self.data['delay'] = self.data["delay_minutes"].apply(self.convert_delay_minutes_to_bool)
+        return self.data
+    
+    def drop_unnecessary_columns(self) -> pd.DataFrame:
+        self.data.drop(columns=['train_id', 'actual_time', 'delay_minutes'], inplace=True)
+        return self.data
+    
+    def save_first_60k(self, path: str):
+        df_first_60 = self.data.head(60000)
+        df_first_60.to_csv(path, index=False)
+    
+    def prep_df(self, csv_path: str='data/NJ.csv'):
+        self.order_by_scheduled_time()
+        self.drop_columns_and_nan()
+        self.convert_day_to_date()
+        self.convert_scheduled_time_to_part_of_the_day()
+        self.convert_delay()
+        self.drop_unnecessary_columns()
+        self.save_first_60k(csv_path)

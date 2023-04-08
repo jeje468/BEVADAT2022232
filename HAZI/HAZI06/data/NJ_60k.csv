@@ -1,4 +1,4 @@
-stop_sequence,from_id,to_id,status,line,type,day,part_of_day,delay
+stop_sequence,from_id,to_id,status,line,type,day,part_of_the_day,delay
 1.0,148,148,departed,Northeast Corrdr,NJ Transit,Thursday,late_night,1
 1.0,123,123,departed,Bergen Co. Line ,NJ Transit,Thursday,late_night,0
 2.0,148,32905,departed,Northeast Corrdr,NJ Transit,Thursday,late_night,1
