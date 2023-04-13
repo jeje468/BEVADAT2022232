@@ -16,7 +16,7 @@ class NJCleaner():
         self.data = droped
         return self.data
     
-    def convert_day_to_date(self) -> pd.DataFrame:
+    def convert_date_to_day(self) -> pd.DataFrame:
         self.data["day"] = self.data["date"].apply(pd.to_datetime).dt.strftime('%A')
         self.data.drop(columns=["date"], inplace=True)
 
@@ -58,11 +58,11 @@ class NJCleaner():
         df_first_60 = self.data.head(60000)
         df_first_60.to_csv(path, index=False)
     
-    def prep_df(self, csv_path: str='data/NJ.csv'):
+    def prep_df(self, path: str='data/NJ.csv'):
         self.order_by_scheduled_time()
         self.drop_columns_and_nan()
-        self.convert_day_to_date()
+        self.convert_date_to_day()
         self.convert_scheduled_time_to_part_of_the_day()
         self.convert_delay()
         self.drop_unnecessary_columns()
-        self.save_first_60k(csv_path)
+        self.save_first_60k(path)

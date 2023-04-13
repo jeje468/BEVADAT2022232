@@ -78,3 +78,93 @@ for i in range(1, 10):
 print(opt_split)
 print(opt_depth)
 classifier = DecisionTreeClassifier(min_samples_split=opt_split, max_depth=opt_split)
+
+# Több módon is próbáltam az optimális fit-t megtalálni. Végül két egymásbaágyazott ciklussal próbáltam meghatározni. 
+# Mind a két ciklus 1-től 9-ig megy, viszont voltak olyan érték párok amelykre hibát dobott ezért vezettem be egy try blokkot.
+# Az órán tanultak alapján általában a legjobb eredményt akkor kapjuk, ha a max_depth nagy érték a min_samples_split pedig kisebb érték.
+# A "min_samples_split" meghatározza a belső csomópont felosztásához szükséges minták minimális számát. Ha egy csomópontban a minták száma kevesebb, 
+# mint a megadott "min_samples_split" érték, a csomópont nem osztódik tovább, és a felosztási folyamat leáll.
+# a "max_depth" beállítja a döntési fa maximális mélységét. Ez korlátozza a fa szintjeinek számát, és így szabályozhatja a modell összetettségét.
+#Az eredményekből látható, hogy a (2, 7) illetve a (3, 7) párosítás adta a legjobb megoldás
+#Eredmények:
+# Min split: 1, max depth: 1, accuracy:0.7773333333333333
+# Min split: 1, max depth: 2, accuracy:0.7823333333333333
+# Min split: 1, max depth: 3, accuracy:0.7839166666666667
+# Min split: 1, max depth: 4, accuracy:0.7849166666666667
+# Error: min split:1, max depth: 5
+# Error: min split:1, max depth: 6
+# Error: min split:1, max depth: 7
+# Error: min split:1, max depth: 8
+# Error: min split:1, max depth: 9
+# Min split: 2, max depth: 1, accuracy:0.7773333333333333
+# Min split: 2, max depth: 2, accuracy:0.7823333333333333
+# Min split: 2, max depth: 3, accuracy:0.7839166666666667
+# Min split: 2, max depth: 4, accuracy:0.7849166666666667
+# Min split: 2, max depth: 5, accuracy:0.7885833333333333
+# Min split: 2, max depth: 6, accuracy:0.7885
+# Min split: 2, max depth: 7, accuracy:0.7934166666666667
+# Error: min split:2, max depth: 8
+# Error: min split:2, max depth: 9
+# Min split: 3, max depth: 1, accuracy:0.7773333333333333
+# Min split: 3, max depth: 2, accuracy:0.7823333333333333
+# Min split: 3, max depth: 3, accuracy:0.7839166666666667
+# Min split: 3, max depth: 4, accuracy:0.7849166666666667
+# Min split: 3, max depth: 5, accuracy:0.7885833333333333
+# Min split: 3, max depth: 6, accuracy:0.7885
+# Min split: 3, max depth: 7, accuracy:0.7934166666666667
+# Error: min split:3, max depth: 8
+# Error: min split:3, max depth: 9
+# Min split: 4, max depth: 1, accuracy:0.7773333333333333
+# Min split: 4, max depth: 2, accuracy:0.7823333333333333
+# Min split: 4, max depth: 3, accuracy:0.7839166666666667
+# Min split: 4, max depth: 4, accuracy:0.7849166666666667
+# Min split: 4, max depth: 5, accuracy:0.7885833333333333
+# Min split: 4, max depth: 6, accuracy:0.7885
+# Min split: 4, max depth: 7, accuracy:0.7934166666666667
+# Error: min split:4, max depth: 8
+# Error: min split:4, max depth: 9
+# Min split: 5, max depth: 1, accuracy:0.7773333333333333
+# Min split: 5, max depth: 2, accuracy:0.7823333333333333
+# Min split: 5, max depth: 3, accuracy:0.7839166666666667
+# Min split: 5, max depth: 4, accuracy:0.7849166666666667
+# Min split: 5, max depth: 5, accuracy:0.7885833333333333
+# Min split: 5, max depth: 6, accuracy:0.7885
+# Min split: 5, max depth: 7, accuracy:0.7934166666666667
+# Error: min split:5, max depth: 8
+# Error: min split:5, max depth: 9
+# Min split: 6, max depth: 1, accuracy:0.7773333333333333
+# Min split: 6, max depth: 2, accuracy:0.7823333333333333
+# Min split: 6, max depth: 3, accuracy:0.7839166666666667
+# Min split: 6, max depth: 4, accuracy:0.7849166666666667
+# Min split: 6, max depth: 5, accuracy:0.7885833333333333
+# Min split: 6, max depth: 6, accuracy:0.7885
+# Min split: 6, max depth: 7, accuracy:0.7935
+# Min split: 6, max depth: 8, accuracy:0.7955
+# Error: min split:6, max depth: 9
+# Min split: 7, max depth: 1, accuracy:0.7773333333333333
+# Min split: 7, max depth: 2, accuracy:0.7823333333333333
+# Min split: 7, max depth: 3, accuracy:0.7839166666666667
+# Min split: 7, max depth: 4, accuracy:0.7849166666666667
+# Min split: 7, max depth: 5, accuracy:0.7885833333333333
+# Min split: 7, max depth: 6, accuracy:0.7885
+# Min split: 7, max depth: 7, accuracy:0.7935
+# Min split: 7, max depth: 8, accuracy:0.7955
+# Error: min split:7, max depth: 9
+# Min split: 8, max depth: 1, accuracy:0.7773333333333333
+# Min split: 8, max depth: 2, accuracy:0.7823333333333333
+# Min split: 8, max depth: 3, accuracy:0.7839166666666667
+# Min split: 8, max depth: 4, accuracy:0.7849166666666667
+# Min split: 8, max depth: 5, accuracy:0.7885833333333333
+# Min split: 8, max depth: 6, accuracy:0.7885
+# Min split: 8, max depth: 7, accuracy:0.7935
+# Min split: 8, max depth: 8, accuracy:0.7955
+# Error: min split:8, max depth: 9
+# Min split: 9, max depth: 1, accuracy:0.7773333333333333
+# Min split: 9, max depth: 2, accuracy:0.7823333333333333
+# Min split: 9, max depth: 3, accuracy:0.7839166666666667
+# Min split: 9, max depth: 4, accuracy:0.7849166666666667
+# Min split: 9, max depth: 5, accuracy:0.7885833333333333
+# Min split: 9, max depth: 6, accuracy:0.7885
+# Min split: 9, max depth: 7, accuracy:0.7935
+# Min split: 9, max depth: 8, accuracy:0.7955833333333333
+# Error: min split:9, max depth: 9
