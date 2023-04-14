@@ -17,7 +17,8 @@ class NJCleaner():
         return self.data
     
     def convert_date_to_day(self) -> pd.DataFrame:
-        self.data["day"] = self.data["date"].apply(pd.to_datetime).dt.strftime('%A')
+        self.data["date"] = pd.to_datetime(self.data["date"])
+        self.data["day"] = self.data["date"].dt.day_name()
         self.data.drop(columns=["date"], inplace=True)
 
         return self.data
