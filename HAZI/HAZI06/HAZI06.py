@@ -59,8 +59,8 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_
 
 opt_split = 0
 opt_depth = 0
-for i in range(1, 10):
-    for j in range(1, 10):
+for i in range(5, 31, 5):
+    for j in range(5, 31, 5):
         try:
             classifier = DecisionTreeClassifier(min_samples_split=i, max_depth=j)
             classifier.fit(X_train, Y_train)
@@ -79,14 +79,14 @@ print(opt_split)
 print(opt_depth)
 classifier = DecisionTreeClassifier(min_samples_split=opt_split, max_depth=opt_split)
 
-# Több módon is próbáltam az optimális fit-t megtalálni. Végül két egymásbaágyazott ciklussal próbáltam meghatározni. 
+# Több módon is próbáltam az optimális fit-t megtalálni. Végül két egymásba ágyazott ciklussal próbáltam meghatározni. 
 # Mind a két ciklus 1-től 9-ig megy, viszont voltak olyan érték párok amelykre hibát dobott ezért vezettem be egy try blokkot.
 # Az órán tanultak alapján általában a legjobb eredményt akkor kapjuk, ha a max_depth nagy érték a min_samples_split pedig kisebb érték.
 # A "min_samples_split" meghatározza a belső csomópont felosztásához szükséges minták minimális számát. Ha egy csomópontban a minták száma kevesebb, 
 # mint a megadott "min_samples_split" érték, a csomópont nem osztódik tovább, és a felosztási folyamat leáll.
 # a "max_depth" beállítja a döntési fa maximális mélységét. Ez korlátozza a fa szintjeinek számát, és így szabályozhatja a modell összetettségét.
 #Az eredményekből látható, hogy a (2, 7) illetve a (3, 7) párosítás adta a legjobb megoldás
-#Eredmények:
+#Elő teszt eredmények:
 # Min split: 1, max depth: 1, accuracy:0.7773333333333333
 # Min split: 1, max depth: 2, accuracy:0.7823333333333333
 # Min split: 1, max depth: 3, accuracy:0.7839166666666667
@@ -168,3 +168,62 @@ classifier = DecisionTreeClassifier(min_samples_split=opt_split, max_depth=opt_s
 # Min split: 9, max depth: 7, accuracy:0.7935
 # Min split: 9, max depth: 8, accuracy:0.7955833333333333
 # Error: min split:9, max depth: 9
+
+#A második tesztelés alatt 5-30-ig iteráltam 5-ös inkrementálással
+# Min split: 5, max depth: 5, accuracy:0.7885833333333333
+# Error: min split:5, max depth: 10
+# Error: min split:5, max depth: 15
+# Error: min split:5, max depth: 20
+# Error: min split:5, max depth: 25
+# Error: min split:5, max depth: 30
+# Error: min split:5, max depth: 35
+# Error: min split:5, max depth: 40
+# Error: min split:5, max depth: 45
+# Error: min split:5, max depth: 50
+# Min split: 10, max depth: 5, accuracy:0.7885833333333333
+# Error: min split:10, max depth: 10
+# Error: min split:10, max depth: 15
+# Error: min split:10, max depth: 20
+# Error: min split:10, max depth: 25
+# Error: min split:10, max depth: 30
+# Error: min split:10, max depth: 35
+# Error: min split:10, max depth: 40
+# Error: min split:10, max depth: 45
+# Error: min split:10, max depth: 50
+# Min split: 15, max depth: 5, accuracy:0.7885833333333333
+# Error: min split:15, max depth: 10
+# Error: min split:15, max depth: 15
+# Error: min split:15, max depth: 20
+# Error: min split:15, max depth: 25
+# Error: min split:15, max depth: 30
+# Error: min split:15, max depth: 35
+# Error: min split:15, max depth: 40
+# Error: min split:15, max depth: 45
+# Error: min split:15, max depth: 50
+# Min split: 20, max depth: 5, accuracy:0.7885833333333333
+# Error: min split:20, max depth: 10
+# Error: min split:20, max depth: 15
+# Error: min split:20, max depth: 20
+# Error: min split:20, max depth: 25
+# Error: min split:20, max depth: 30
+# Error: min split:20, max depth: 35
+# Error: min split:20, max depth: 40
+# Error: min split:20, max depth: 45
+# Error: min split:20, max depth: 50
+# Min split: 25, max depth: 5, accuracy:0.7885833333333333
+# Min split: 25, max depth: 10, accuracy:0.8003333333333333
+# Error: min split:25, max depth: 10
+# Min split: 25, max depth: 15, accuracy:0.79125
+# Min split: 25, max depth: 20, accuracy:0.7823333333333333
+# Min split: 25, max depth: 25, accuracy:0.77975
+# Min split: 25, max depth: 30, accuracy:0.779
+# Min split: 25, max depth: 35, accuracy:0.779
+# Min split: 25, max depth: 40, accuracy:0.779
+# Min split: 25, max depth: 45, accuracy:0.779
+# Min split: 25, max depth: 50, accuracy:0.779
+# Min split: 30, max depth: 5, accuracy:0.7885833333333333
+# Min split: 30, max depth: 10, accuracy:0.80075
+# Error: min split:30, max depth: 10
+# Min split: 30, max depth: 15, accuracy:0.7929166666666667
+# Min split: 30, max depth: 20, accuracy:0.78425
+#Itt látható, hogy a (25, 10), illetve a (30, 10) párossal sikerült a 80%-t elérni
