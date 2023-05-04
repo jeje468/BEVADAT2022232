@@ -13,8 +13,7 @@ függvény neve: mnist_digit_data
 
 # %%
 def mnist_digit_data():
-    (train_images, train_labels), (test_images,
-                                   test_labels) = tf.keras.datasets.mnist.load_data()
+    (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
     train_images = train_images / 255.0
     test_images = test_images / 255.0
     return train_images, train_labels, test_images, test_labels
@@ -35,10 +34,11 @@ függvény neve: mnist_model
 
 # %%
 def mnist_model():
-    model = tf.keras.Sequential([
-        tf.keras.layers.Flatten(input_shape=(28, 28)),
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dense(10, activation='softmax')])
+    model = tf.keras.Sequential(
+        [tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Dense(50, activation='relu'),
+        tf.keras.layers.Dense(10, activation='softmax')]
+        )
     return model
 
 # model = mnist_model()
@@ -58,8 +58,7 @@ függvény neve: model_compile
 # %%
 def model_compile(model):
     model.compile(optimizer='adam',
-                  loss=tf.keras.losses.SparseCategoricalCrossentropy(
-                      from_logits=False),
+                  loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
                   metrics=['accuracy'])
     return model
 
